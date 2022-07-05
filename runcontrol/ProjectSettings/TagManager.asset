@@ -6,6 +6,14 @@ TagManager:
   tags:
   - GameManager
   - enmy
+  - carpma
+  - toplama
+  - cikarma
+  - bolme
+  - Testere
+  - pervaneIgneler
+  - AltKarakterler
+  - Balyoz
   layers:
   - Default
   - TransparentFX

@@ -9,7 +9,7 @@ public class Karakter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
     private void FixedUpdate()
     {
@@ -18,9 +18,9 @@ public class Karakter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
-            if(Input.GetAxis("Mouse X")<0)
+            if (Input.GetAxis("Mouse X") < 0)
             {
                 transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x - .1f,
                     transform.position.y, transform.position.z), .3f);
@@ -36,10 +36,11 @@ public class Karakter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.name=="x2"||other.name=="+3" || other.name == "/2" || other.name == "-4")
-        _GameManager.AdamYonetim(other.name,other.transform);
-           
+        if (other.CompareTag("carpma") || other.CompareTag("toplama") || other.CompareTag("cikarma") || other.CompareTag("bolme"))
 
-        
+        {
+            int Sayi = int.Parse(other.name);
+            _GameManager.AdamYonetim(other.tag, Sayi, other.transform);
+        }
     }
 }
