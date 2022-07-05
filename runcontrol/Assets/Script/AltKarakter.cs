@@ -16,7 +16,7 @@ public class AltKarakter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private void LateUpdate()
     {
@@ -24,7 +24,7 @@ public class AltKarakter : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("enmy"))
+        if (other.CompareTag("enmy"))
         {
             Vector3 yeniPoz = new Vector3(transform.position.x, .23f, transform.position.z);
             GameObject.FindWithTag("GameManager").GetComponent<GameManager>().YokOlmaEfektiOlustur(yeniPoz);
@@ -45,8 +45,15 @@ public class AltKarakter : MonoBehaviour
         if (other.CompareTag("Balyoz"))
         {
             Vector3 yeniPoz = new Vector3(transform.position.x, .23f, transform.position.z);
-            GameObject.FindWithTag("GameManager").GetComponent<GameManager>().YokOlmaEfektiOlustur(yeniPoz,true);
-            
+            GameObject.FindWithTag("GameManager").GetComponent<GameManager>().YokOlmaEfektiOlustur(yeniPoz, true);
+
+            gameObject.SetActive(false);
+        }
+        if (other.CompareTag("Dusman"))
+        {
+            Vector3 yeniPoz = new Vector3(transform.position.x, .23f, transform.position.z);
+            GameObject.FindWithTag("GameManager").GetComponent<GameManager>().YokOlmaEfektiOlustur(yeniPoz);
+
             gameObject.SetActive(false);
         }
     }

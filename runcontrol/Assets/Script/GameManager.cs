@@ -14,10 +14,34 @@ public class GameManager : MonoBehaviour
     public List<GameObject> AdamLekesiEfektleri;
 
 
+    [Header("LEVEL VERÝLERÝ")]
+    public List<GameObject> Dusmanlar;
+    public int KacDusmanOlsun;
+
     void Start()
     {
+        DusmanlariOlustur();
+    }
+    public void DusmanlariOlustur()
+    {
+        for (int i = 0; i < KacDusmanOlsun; i++)
+        {
+            Dusmanlar[i].SetActive(true);
+        }
+    }
+
+    public void DusmanlariTetikle()
+    {
+        foreach (var item in Dusmanlar)
+        {
+            if(item.activeInHierarchy)
+            {
+                item.GetComponent<Dusman>().AnimasyonTetikle();
+            }
+        }
 
     }
+
 
     // Update is called once per frame
     void Update()
@@ -80,7 +104,7 @@ public class GameManager : MonoBehaviour
         }
         if(Balyoz)
         {
-            Vector3 yeniPoz = new Vector3(Pozisyon.x, 0.005f, Pozisyon.z);
+            Vector3 yeniPoz = new Vector3(Pozisyon.x, .005f, Pozisyon.z);
             foreach (var item in AdamLekesiEfektleri)
             {
                 if (!item.activeInHierarchy)
