@@ -28,7 +28,7 @@ public class Dusman : MonoBehaviour
         if (other.CompareTag("AltKarakterler"))
         {
             Vector3 yeniPoz = new Vector3(transform.position.x, .23f, transform.position.z);
-            GameObject.FindWithTag("GameManager").GetComponent<GameManager>().YokOlmaEfektiOlustur(yeniPoz);
+            GameObject.FindWithTag("GameManager").GetComponent<GameManager>().YokOlmaEfektiOlustur(yeniPoz,false,true);
 
             gameObject.SetActive(false);
         }

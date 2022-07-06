@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     [Header("LEVEL VERÝLERÝ")]
     public List<GameObject> Dusmanlar;
     public int KacDusmanOlsun;
-
+    public GameObject AnaKarakter;
     void Start()
     {
         DusmanlariOlustur();
@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
         }
 
     }
+   
 
 
     // Update is called once per frame
@@ -57,6 +58,38 @@ public class GameManager : MonoBehaviour
         //            break;
         //        }
         //    }
+    }
+    public void SavasDurumu()
+    {
+        if(AnlikKarakterSayisi==1|| KacDusmanOlsun==0)
+        {
+            foreach (var item in Dusmanlar)
+            {
+                if(item.activeInHierarchy)
+                {
+                    item.GetComponent<Animator>().SetBool("Saldir", false);
+                }
+            }
+            foreach (var item in Karakterler)
+            {
+                if(item.activeInHierarchy)
+                {
+                    item.GetComponent<Animator>().SetBool("Saldir", false);
+                }
+            }
+            AnaKarakter.GetComponent<Animator>().SetBool("Saldir", false);
+            if (AnlikKarakterSayisi<KacDusmanOlsun||AnlikKarakterSayisi==KacDusmanOlsun)
+            {
+                Debug.Log("kaybettin");
+
+            }
+            else
+            {
+                Debug.Log("kazandýn");
+            }
+
+        }
+
     }
     public void AdamYonetim(string islemTuru, int GelenSayi, Transform Pozisyon)
     {
@@ -87,7 +120,7 @@ public class GameManager : MonoBehaviour
 
 
     }
-    public void YokOlmaEfektiOlustur(Vector3 Pozisyon, bool Balyoz=false)
+    public void YokOlmaEfektiOlustur(Vector3 Pozisyon, bool Balyoz=false, bool Durum=false)
     {
         foreach (var item in YokOlmaEfektleri)
         {
@@ -96,13 +129,18 @@ public class GameManager : MonoBehaviour
                 item.transform.position = Pozisyon;
                 item.SetActive(true);
                 item.GetComponent<ParticleSystem>().Play();
-                AnlikKarakterSayisi--;
+                if (!Durum)
+
+                    AnlikKarakterSayisi--;
+                else
+                    KacDusmanOlsun--;
                 break;
 
             }
 
         }
-        if(Balyoz)
+        SavasDurumu();
+        if (Balyoz)
         {
             Vector3 yeniPoz = new Vector3(Pozisyon.x, .005f, Pozisyon.z);
             foreach (var item in AdamLekesiEfektleri)
