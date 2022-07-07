@@ -5,7 +5,7 @@ using UnityEngine;
 public class Karakter : MonoBehaviour
 {
     public GameManager _GameManager;
-    public GameObject Kamera;
+    public Kamera _Kamera;
     public bool SonaGeldikMi;
     public GameObject GidecegiYer;
     // Start is called before the first frame update
@@ -62,9 +62,16 @@ public class Karakter : MonoBehaviour
         }
         else if (other.CompareTag("SonTetikleyici"))
         {
-            Kamera.GetComponent<Kamera>().SonaGeldikMi = true;
+            _Kamera.SonaGeldikMi = true;
             _GameManager.DusmanlariTetikle();
             SonaGeldikMi = true;
+        }
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Direk"))
+        {
+            Debug.Log("yes");
         }
     }
 }

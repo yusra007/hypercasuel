@@ -6,12 +6,9 @@ using UnityEngine.AI;
 public class Dusman : MonoBehaviour
 {
     public GameObject SaldiriHedefi;
-    NavMeshAgent navMash;
+   public NavMeshAgent navMash;
     bool SaldiriBasladiMi;
-    void Start()
-    {
-        navMash = GetComponent<NavMeshAgent>();
-    }
+   
     public void AnimasyonTetikle()
     {
         GetComponent<Animator>().SetBool("Saldir", true);
